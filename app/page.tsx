@@ -377,15 +377,13 @@ function ProjectsOutput() {
       name: "SinceToonz",
       desc: "E-learning platform built and maintained with reusable, responsive UI components.",
       tags: ["Next.js", "React", "REST APIs", "Authentication"],
-      demo: "#",
-      github: "#",
+      demo: "https://sciencetoonz.com/",
     },
     {
       name: "Adepti",
       desc: "HR management platform focusing on skill matching and candidate evaluation workflows.",
       tags: ["Next.js", "React", "REST APIs", "Dynamic Components"],
-      demo: "#",
-      github: "#",
+      demo: "https://www.adepti.ai/",
     },
   ];
 
@@ -418,13 +416,6 @@ function ProjectsOutput() {
               className="hover:underline"
             >
               [live demo]
-            </a>
-            <a
-              href={proj.github}
-              style={{ color: "#3fb950" }}
-              className="hover:underline"
-            >
-              [github]
             </a>
           </div>
         </div>
