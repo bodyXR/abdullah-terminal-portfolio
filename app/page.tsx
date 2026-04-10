@@ -166,7 +166,7 @@ export default function Portfolio() {
           {/* Terminal Body */}
           <div
             ref={terminalRef}
-            className="p-6 min-h-96 max-h-96 overflow-y-auto text-sm leading-relaxed"
+            className="p-6 min-h-screen max-h-screen md:min-h-[800px] md:max-h-[800px] overflow-y-auto text-sm leading-relaxed"
             style={{ color: textColor, fontFamily: 'JetBrains Mono, monospace' }}
           >
             <AnimatePresence>
@@ -212,12 +212,6 @@ export default function Portfolio() {
                   className="flex-1 bg-transparent outline-none ml-1"
                   style={{ color: textColor, caretColor: '#3fb950' }}
                   placeholder=""
-                />
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.6, repeat: Infinity }}
-                  className="w-2 h-4 inline-block"
-                  style={{ backgroundColor: '#3fb950' }}
                 />
               </div>
             )}
