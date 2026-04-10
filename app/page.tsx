@@ -166,8 +166,9 @@ export default function Portfolio() {
           {/* Terminal Body */}
           <div
             ref={terminalRef}
-            className="p-6 min-h-[500px] max-h-[600px] overflow-y-auto text-sm leading-relaxed"
+            className="p-6 min-h-[500px] max-h-[600px] overflow-y-auto text-sm leading-relaxed cursor-text"
             style={{ color: textColor, fontFamily: 'JetBrains Mono, monospace' }}
+            onClick={() => inputRef.current?.focus()}
           >
             <AnimatePresence>
               {outputs.map((output, idx) => (
@@ -217,25 +218,23 @@ export default function Portfolio() {
             )}
           </div>
 
-          {/* Mobile Command Buttons */}
-          {isMobile && (
-            <div className="p-4 border-t flex flex-wrap gap-2 justify-center" style={{ borderColor }}>
-              {['about', 'projects', 'skills', 'contact', 'help'].map(cmd => (
-                <button
-                  key={cmd}
-                  onClick={() => executeCommand(cmd)}
-                  className="px-3 py-1 text-xs border rounded font-mono transition"
-                  style={{
-                    borderColor: '#3fb950',
-                    color: '#3fb950',
-                    backgroundColor: theme === 'dark' ? '#0d1117' : '#f6f8fa',
-                  }}
-                >
-                  $ {cmd}
-                </button>
-              ))}
-            </div>
-          )}
+          {/* Command Buttons - Mobile & Desktop */}
+          <div className="p-4 border-t flex flex-wrap gap-2 justify-center" style={{ borderColor }}>
+            {['about', 'projects', 'skills', 'contact', 'resume', 'help'].map(cmd => (
+              <button
+                key={cmd}
+                onClick={() => executeCommand(cmd)}
+                className="px-3 py-1 text-xs border rounded font-mono transition hover:bg-opacity-10 hover:bg-green-400"
+                style={{
+                  borderColor: '#3fb950',
+                  color: '#3fb950',
+                  backgroundColor: theme === 'dark' ? '#0d1117' : '#f6f8fa',
+                }}
+              >
+                $ {cmd}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Footer Comment */}
