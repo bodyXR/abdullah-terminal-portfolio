@@ -68,8 +68,8 @@ export default function Portfolio() {
         case 'help':
           addOutput('', <HelpOutput />);
           break;
-        case 'whoami':
-          addOutput('', <WhoamiOutput />);
+        case 'about':
+          addOutput('', <AboutOutput />);
           break;
         case 'projects':
         case 'ls projects':
@@ -166,7 +166,7 @@ export default function Portfolio() {
           {/* Terminal Body */}
           <div
             ref={terminalRef}
-            className="p-6 min-h-screen max-h-screen md:min-h-[800px] md:max-h-[800px] overflow-y-auto text-sm leading-relaxed"
+            className="p-6 min-h-[500px] max-h-[600px] overflow-y-auto text-sm leading-relaxed"
             style={{ color: textColor, fontFamily: 'JetBrains Mono, monospace' }}
           >
             <AnimatePresence>
@@ -220,7 +220,7 @@ export default function Portfolio() {
           {/* Mobile Command Buttons */}
           {isMobile && (
             <div className="p-4 border-t flex flex-wrap gap-2 justify-center" style={{ borderColor }}>
-              {['whoami', 'projects', 'skills', 'contact', 'help'].map(cmd => (
+              {['about', 'projects', 'skills', 'contact', 'help'].map(cmd => (
                 <button
                   key={cmd}
                   onClick={() => executeCommand(cmd)}
@@ -256,11 +256,11 @@ export default function Portfolio() {
 // Command Output Components
 function HelpOutput() {
   const commands = [
-    { name: 'whoami', desc: 'Display your profile & bio' },
+    { name: 'about', desc: 'Display your profile & bio' },
     { name: 'projects', desc: 'Show all portfolio projects' },
     { name: 'skills', desc: 'Display technical skills' },
     { name: 'contact', desc: 'Get contact information' },
-    { name: 'resume', desc: 'Download resume (PDF)' },
+    { name: 'resume', desc: 'View and download resume (PDF)' },
     { name: 'clear', desc: 'Clear the terminal' },
     { name: 'theme light/dark', desc: 'Toggle theme' },
     { name: 'help', desc: 'Show this help menu' },
@@ -281,13 +281,19 @@ function HelpOutput() {
   );
 }
 
-function WhoamiOutput() {
+function AboutOutput() {
   return (
     <div>
-      <div><span style={{ color: '#3fb950' }}>→</span> <span style={{ color: '#a5d6ff' }}>Alex Johnson</span></div>
-      <div><span style={{ color: '#3fb950' }}>→</span> <span style={{ color: '#a5d6ff' }}>Full Stack Web Developer</span></div>
-      <div><span style={{ color: '#3fb950' }}>→</span> Based in <span style={{ color: '#a5d6ff' }}>San Francisco, CA</span> · Open to work</div>
-      <div><span style={{ color: '#3fb950' }}>→</span> Building fast, scalable, and beautiful web apps</div>
+      <div><span style={{ color: '#3fb950' }}>→</span> <span style={{ color: '#a5d6ff' }}>Abdullah Mohamed Hussien</span></div>
+      <div><span style={{ color: '#3fb950' }}>→</span> <span style={{ color: '#a5d6ff' }}>Next.js Front-end Developer</span></div>
+      <div><span style={{ color: '#3fb950' }}>→</span> Based in <span style={{ color: '#a5d6ff' }}>Giza, Egypt</span> · Open to work</div>
+      <div><span style={{ color: '#3fb950' }}>→</span> Building high-performance, scalable web applications</div>
+      <div style={{ marginTop: '12px', color: '#8b949e', fontSize: '13px' }}>
+        <div>Skilled Next.js Web Developer with experience building scalable,</div>
+        <div>high-performance web applications for clients. Strong background in</div>
+        <div>modern front-end development, API integration, and performance</div>
+        <div>optimization with maintainable solutions aligned with business goals.</div>
+      </div>
       <div style={{ marginTop: '8px' }}>
         <span style={{ color: '#f78166' }}>status:</span> <span style={{ color: '#3fb950' }}>● available for hire</span>
       </div>
@@ -298,23 +304,16 @@ function WhoamiOutput() {
 function ProjectsOutput() {
   const projects = [
     {
-      name: 'SaaS Dashboard',
-      desc: 'Real-time analytics with role-based access, charts and dark mode.',
-      tags: ['React', 'Node.js', 'Socket.io', 'PostgreSQL'],
+      name: 'SinceToonz',
+      desc: 'E-learning platform built and maintained with reusable, responsive UI components.',
+      tags: ['Next.js', 'React', 'REST APIs', 'Authentication'],
       demo: '#',
       github: '#',
     },
     {
-      name: 'E-Commerce Platform',
-      desc: 'Full-stack shop with cart, payments (Stripe), and admin panel.',
-      tags: ['Next.js', 'Prisma', 'Stripe', 'Tailwind'],
-      demo: '#',
-      github: '#',
-    },
-    {
-      name: 'DevLink API',
-      desc: 'REST API for a developer community platform with auth & social.',
-      tags: ['Express', 'JWT', 'Redis', 'MongoDB'],
+      name: 'Adepti',
+      desc: 'HR management platform focusing on skill matching and candidate evaluation workflows.',
+      tags: ['Next.js', 'React', 'REST APIs', 'Dynamic Components'],
       demo: '#',
       github: '#',
     },
@@ -345,10 +344,8 @@ function ProjectsOutput() {
 
 function SkillsOutput() {
   const skills = {
-    frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux'],
-    backend: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'Redis'],
-    devops: ['Docker', 'Git', 'CI/CD', 'Linux', 'Vercel'],
-    tools: ['Figma', 'Postman', 'VS Code', 'Jira'],
+    languages: ['JavaScript', 'Python', 'C#', 'C++', 'Dart', 'SQL'],
+    frameworks: ['React Js', 'Next.js', 'Node.js', 'Flutter'],
   };
 
   return (
@@ -379,10 +376,10 @@ function ContactOutput() {
     <div>
       <div style={{ color: '#3fb950' }}>✔ Initiating contact protocol...</div>
       <div style={{ marginTop: '8px' }}>
-        <div><span style={{ color: '#f78166' }}>email</span><span style={{ color: '#8b949e' }}>    →</span> <a href="mailto:hello@example.com" style={{ color: '#58a6ff' }} className="hover:underline">hello@example.com</a></div>
-        <div><span style={{ color: '#f78166' }}>github</span><span style={{ color: '#8b949e' }}>   →</span> <a href="#" style={{ color: '#58a6ff' }} target="_blank" rel="noopener noreferrer" className="hover:underline">github.com/yourname</a></div>
-        <div><span style={{ color: '#f78166' }}>linkedin</span><span style={{ color: '#8b949e' }}> →</span> <a href="#" style={{ color: '#58a6ff' }} target="_blank" rel="noopener noreferrer" className="hover:underline">linkedin.com/in/yourname</a></div>
-        <div><span style={{ color: '#f78166' }}>twitter</span><span style={{ color: '#8b949e' }}>  →</span> <a href="#" style={{ color: '#58a6ff' }} target="_blank" rel="noopener noreferrer" className="hover:underline">@yourhandle</a></div>
+        <div><span style={{ color: '#f78166' }}>email</span><span style={{ color: '#8b949e' }}>    →</span> <a href="mailto:abdo251108@gmail.com" style={{ color: '#58a6ff' }} className="hover:underline">abdo251108@gmail.com</a></div>
+        <div><span style={{ color: '#f78166' }}>phone</span><span style={{ color: '#8b949e' }}>    →</span> <a href="tel:+201005497891" style={{ color: '#58a6ff' }} className="hover:underline">+20 100 5497891</a></div>
+        <div><span style={{ color: '#f78166' }}>website</span><span style={{ color: '#8b949e' }}>  →</span> <a href="https://abdullah-mohamed.vercel.app" style={{ color: '#58a6ff' }} target="_blank" rel="noopener noreferrer" className="hover:underline">abdullah-mohamed.vercel.app</a></div>
+        <div><span style={{ color: '#f78166' }}>location</span><span style={{ color: '#8b949e' }}>  →</span> <span style={{ color: '#58a6ff' }}>Giza, Egypt</span></div>
       </div>
       <div style={{ marginTop: '8px', color: '#8b949e' }}>Response time: &lt; 24 hours</div>
     </div>
@@ -392,9 +389,22 @@ function ContactOutput() {
 function ResumeOutput() {
   return (
     <div>
-      <div style={{ color: '#3fb950' }}>→ Opening resume...</div>
-      <div style={{ marginTop: '8px', color: '#58a6ff' }}>
-        <a href="/resume.pdf" className="hover:underline">[download resume.pdf]</a>
+      <div style={{ color: '#3fb950' }}>→ Loading resume...</div>
+      <div style={{ marginTop: '12px', marginBottom: '8px' }}>
+        <div style={{ color: '#79c0ff', fontWeight: 'bold' }}>Abdullah Mohamed Hussien</div>
+        <div style={{ color: '#8b949e', fontSize: '13px' }}>Next.js Front-end Developer | abdo251108@gmail.com | +20 100 5497891 | Giza/Egypt</div>
+      </div>
+      <div style={{ marginTop: '8px', color: '#a5d6ff', fontSize: '13px' }}>
+        <div style={{ color: '#79c0ff', marginTop: '8px', fontWeight: 'bold' }}>Summary</div>
+        <div style={{ color: '#8b949e' }}>Skilled Next.js Web Developer with experience building scalable, high-performance web applications for clients. Strong background in modern front-end development, API integration, and performance optimization.</div>
+      </div>
+      <div style={{ marginTop: '8px', color: '#a5d6ff', fontSize: '13px' }}>
+        <div style={{ color: '#79c0ff', marginTop: '8px', fontWeight: 'bold' }}>Professional Experience</div>
+        <div style={{ color: '#79c0ff' }}>Next.js Developer, Gentech (2023 – Present)</div>
+        <div style={{ color: '#8b949e' }}>Cairo, Egypt · Developing high-performance web applications using Next.js and React, turning business requirements into scalable, user-friendly solutions.</div>
+      </div>
+      <div style={{ marginTop: '12px', color: '#58a6ff', textAlign: 'center' }}>
+        <a href="/resume.pdf" download className="hover:underline" style={{ color: '#3fb950', fontWeight: 'bold' }}>[⬇ download resume.pdf]</a>
       </div>
     </div>
   );
