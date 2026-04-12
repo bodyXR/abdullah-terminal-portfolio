@@ -390,11 +390,6 @@ function ProjectsOutput() {
       desc: "Courses platform with admin, instructor, and learner interfaces built using Next.js.",
       tags: ["Next.js", "React", "Responsive UI", "Role-based Workflows"],
       demo: "",
-      details: [
-        "Participated in building the front-end of a learning management system using Next.js, covering admin, instructor, and user interfaces.",
-        "Implemented responsive, role-based UI workflows tailored for administrators, instructors, and learners.",
-        "Engineered reusable components across all interfaces to maintain a consistent design system and accelerate development.",
-      ],
     },
   ];
 
@@ -430,13 +425,6 @@ function ProjectsOutput() {
                 [live demo]
               </a>
             </div>
-          ) : null}
-          {proj.details ? (
-            <ul className="mt-2 text-xs list-disc list-inside text-gray-400">
-              {proj.details.map((detail, k) => (
-                <li key={k}>{detail}</li>
-              ))}
-            </ul>
           ) : null}
         </div>
       ))}
