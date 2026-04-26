@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MatrixBackground } from '@/components/matrix-bg';
+import { Typewriter } from '@/components/typewriter';
 
 interface CommandOutput {
   id: string;
@@ -134,19 +136,20 @@ export default function Portfolio() {
   const borderColor = theme === 'dark' ? '#30363d' : '#d0d7de';
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: bgColor }}>
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen flex items-center justify-center p-4 relative" style={{ backgroundColor: bgColor }}>
+      <MatrixBackground />
+      <div className="w-full max-w-2xl relative z-10">
         {/* Terminal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="rounded-lg overflow-hidden border"
           style={{
             backgroundColor: bgColor,
             borderColor: borderColor,
             boxShadow: theme === 'dark' 
-              ? '0 20px 60px rgba(0,0,0,0.5)' 
+              ? '0 0 30px rgba(63, 185, 80, 0.2), 0 20px 60px rgba(0,0,0,0.5)' 
               : '0 20px 60px rgba(0,0,0,0.1)',
           }}
         >
@@ -176,7 +179,7 @@ export default function Portfolio() {
                   key={output.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
                   className="mb-3"
                 >
                   {output.command && (
@@ -184,12 +187,17 @@ export default function Portfolio() {
                       <span style={{ color: '#3fb950' }}>user@portfolio</span>
                       <span style={{ color: textColor }}>:</span>
                       <span style={{ color: '#58a6ff' }}>~</span>
-                      <span style={{ color: textColor }}>$ {output.command}</span>
+                      <span style={{ color: textColor }}>$ </span>
+                      <Typewriter text={output.command} delay={0.1 + idx * 0.05} speed={0.015} />
                     </div>
                   )}
                   {output.output && (
                     <div style={{ color: theme === 'dark' ? '#cdd9e5' : '#24292f' }}>
-                      {output.output}
+                      {typeof output.output === 'string' ? (
+                        <Typewriter text={output.output} delay={0.2 + idx * 0.05} speed={0.01} />
+                      ) : (
+                        output.output
+                      )}
                     </div>
                   )}
                 </motion.div>
@@ -220,11 +228,16 @@ export default function Portfolio() {
 
           {/* Command Buttons - Mobile & Desktop */}
           <div className="p-4 border-t flex flex-wrap gap-2 justify-center" style={{ borderColor }}>
-            {['about', 'projects', 'skills', 'contact', 'resume', 'help'].map(cmd => (
-              <button
+            {['about', 'projects', 'skills', 'contact', 'resume', 'help'].map((cmd, idx) => (
+              <motion.button
                 key={cmd}
                 onClick={() => executeCommand(cmd)}
-                className="px-3 py-1 text-xs border rounded font-mono transition hover:bg-opacity-10 hover:bg-green-400"
+                whileHover={{ scale: 1.08, boxShadow: '0 0 15px rgba(63, 185, 80, 0.4)' }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05, duration: 0.3 }}
+                className="px-3 py-1 text-xs border rounded font-mono transition"
                 style={{
                   borderColor: '#3fb950',
                   color: '#3fb950',
@@ -232,7 +245,7 @@ export default function Portfolio() {
                 }}
               >
                 $ {cmd}
-              </button>
+              </motion.button>
             ))}
           </div>
         </motion.div>
