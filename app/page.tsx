@@ -391,6 +391,18 @@ function ProjectsOutput() {
       tags: ["Next.js", "React", "Responsive UI", "Role-based Workflows"],
       demo: "",
     },
+    {
+      name: "Edu Tactic",
+      desc: "An AI studying tool project designed to enhance learning experiences.",
+      tags: ["AI", "Education", "Next.js"],
+      demo: "https://edu-tactic.vercel.app",
+    },
+    {
+      name: "RAG Bot",
+      desc: "A chat bot with RAG (Retrieval-Augmented Generation) capabilities.",
+      tags: ["AI", "RAG", "Chatbot"],
+      demo: "https://abdullah-rag-bot.vercel.app/",
+    },
   ];
 
   return (
